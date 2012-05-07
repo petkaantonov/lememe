@@ -192,9 +192,9 @@ function update_key(e) {
 api_key_btn.click(function(e) {
 	api_key_btn.hide();
 	api_key_input.show();
+	api_key_input.bind('blur', update_key);
 	api_key_input[0].select();
 	api_key_input[0].focus();
-	api_key_input.bind('blur', update_key);
 });
 draw();
 </script>
