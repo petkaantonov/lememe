@@ -100,6 +100,7 @@ var meme_image_list = $('#meme-images > li'),
 	spinner = $('#spinner'),
 	api_key_btn = $('#api-key'),
 	api_key_input = $('#api-key-input'),
+	api_key_form = $('#api-key-form'),
 	ctx = canvas.getContext('2d'),
 	hold_top = '',
 	hold_bottom = '',
@@ -179,6 +180,9 @@ generate.click(function(e) {
 		alert('Could not reach api.imgur.com. Sorry :(');
 		spinner.hide();
 	});
+});
+api_key_form.submit(function(e) {
+	e.preventDefault();
 });
 function update_key(e) {
 	$(this).unbind('blur', update_key);
