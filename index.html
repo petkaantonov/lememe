@@ -39,18 +39,21 @@ body {
 				</ul>
 				</li>
 				<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Font Color <b class="caret"></b></a>
-				<ul class="dropdown-menu" id="meme-color">
-					<li class="active"><a href="#" data-color="#FFF">White</a></li>
-					<li><a href="#" data-color="#000">Black</a></li>
-					<li><a href="#" data-color="#888">Grey</a></li>
-					<li><a href="#" data-color="#F00">Red</a></li>
-					<li><a href="#" data-color="#0F0">Green</a></li>
-					<li><a href="#" data-color="#00F">Blue</a></li>
-					<li><a href="#" data-color="#FF0">Yellow</a></li>
-					<li><a href="#" data-color="#A020F0">Purple</a></li>
-					<li><a href="#" data-color="#FFAED5">Pink</a></li>
-				</ul>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Font Color <b class="caret"></b></a>
+					<ul class="dropdown-menu" id="meme-color">
+						<li class="active"><a href="#" data-color="#FFF">White</a></li>
+						<li><a href="#" data-color="#000">Black</a></li>
+						<li><a href="#" data-color="#888">Grey</a></li>
+						<li><a href="#" data-color="#F00">Red</a></li>
+						<li><a href="#" data-color="#0F0">Green</a></li>
+						<li><a href="#" data-color="#00F">Blue</a></li>
+						<li><a href="#" data-color="#FF0">Yellow</a></li>
+						<li><a href="#" data-color="#A020F0">Purple</a></li>
+						<li><a href="#" data-color="#FFAED5">Pink</a></li>
+					</ul>
+				</li>
+				<li><a href="#" id="api-key" title="Change API Key">API Key</a>
+				<input type="text" id="api-key-input" value="eef75ee1f4d14ddf5e48e67e6531f739" hidden />
 				</li>
 			</ul>
 			<ul class="nav pull-right">
@@ -76,7 +79,7 @@ body {
 		</div>
 		<div class="row">
 			<div class="alert alert-error">
-				<strong>Oh snap!</strong> There are only 50 images a day that can be generated and stored on imgur. If you cannot generate an image, please provide your own API Key to generate more! More information can be found <a href="http://imgur.com/register/api_anon" target="_blank" title="open imgur.com in a new window">Here</a>.
+				<strong>Oh snap!</strong> There are only 50 images per hour that can be generated and stored on imgur. If you cannot generate an image, please provide your own API Key to generate more! More information can be found <a href="http://imgur.com/register/api_anon" target="_blank" title="open imgur.com in a new window">Here</a>.
 			</div>
 		</div>
 	</div>
@@ -92,6 +95,8 @@ var meme_image_list = $('#meme-images > li'),
 	generate = $('#generate'),
 	userlink = $('#img-link'),
 	spinner = $('#spinner'),
+	api_key_btn = $('#api-key'),
+	api_key_input = $('#api-key-input'),
 	ctx = canvas.getContext('2d'),
 	hold_top = '',
 	hold_bottom = '',
@@ -156,7 +161,7 @@ generate.click(function(e) {
 		type: 'POST',
 		data: {
 			type: 'base64',
-			key: 'eef75ee1f4d14ddf5e48e67e6531f739',
+			key: $('#api-key-input').val(),
 			image: dataURL
 		},
 		dataType: 'json'
@@ -171,6 +176,16 @@ generate.click(function(e) {
 		alert('Could not reach api.imgur.com. Sorry :(');
 		spinner.hide();
 	});
+});
+function update_key(e) {
+	this.unbind('blur', update_key);
+	this.hidden = true;
+	api_key_btn.hidden = false;
+}
+api_key_btn.click(function(e) {
+	this.hidden = true;
+	api_key_input.hidden = false;
+	api_key_input.bind('blur', update_key);
 });
 draw();
 </script>
