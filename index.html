@@ -53,7 +53,7 @@ body {
 					</ul>
 				</li>
 				<li><a href="#" id="api-key" title="Change API Key">API Key</a>
-				<input type="text" id="api-key-input" value="eef75ee1f4d14ddf5e48e67e6531f739" hidden />
+				<input type="hidden" id="api-key-input" value="eef75ee1f4d14ddf5e48e67e6531f739" />
 				</li>
 			</ul>
 			<ul class="nav pull-right">
@@ -178,13 +178,13 @@ generate.click(function(e) {
 	});
 });
 function update_key(e) {
-	this.unbind('blur', update_key);
-	this.hidden = true;
+	$(this).unbind('blur', update_key);
+	this.type = 'hidden';
 	api_key_btn.hidden = false;
 }
 api_key_btn.click(function(e) {
 	this.hidden = true;
-	api_key_input.hidden = false;
+	api_key_input.type = 'text';
 	api_key_input.bind('blur', update_key);
 });
 draw();
