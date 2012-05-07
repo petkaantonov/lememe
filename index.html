@@ -1,169 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>LeMEME Generator</title>
-  
-  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-  <script type="text/javascript" src="http://fiddle.jshell.net/js/lib/bootstrap-2.0.2.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
-  <style type='text/css'>
-    body {
- padding-top: 48px;
- padding-bottom: 10px;    
-}
-#cvs {
- outline: 2px dashed red;   
-}
-  </style>
-  
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>LeMEME Generator</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a href="/" class="brand">LeMeme Generator</a>
-            <ul class="nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Base Image <b class="caret"></b></a>
-                    <ul class="dropdown-menu" id="meme-images">
-                      <li class="active"><a href="#" data-img="yuno.jpg">Y U NO guy</a></li>
-                      <li><a href="#" data-img="loktarian.jpg">Loktarian</a></li>
-                      <li><a href="#" data-img="trollface.jpg">Troll Face</a></li>
-                      <li><a href="#" data-img="scumbag.jpg">Scumbag Steve</a></li>
-                    </ul>
-                  </li>
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Font Color <b class="caret"></b></a>
-                    <ul class="dropdown-menu" id="meme-color">
-                      <li class="active"><a href="#" data-color="#000">Black</a></li>
-                      <li><a href="#" data-color="#fff">White</a></li>
-                    </ul>
-                  </li>
-            </ul>      
-            <ul class="nav pull-right">
-                <li class="active"><a href="#" id="generate">Generate!</a></li>
-            </ul>
-        </div>
-    </div>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a href="/" class="brand">LeMeme Generator</a>
+			<ul class="nav">
+				<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Base Image <b class="caret"></b></a>
+				<ul class="dropdown-menu" id="meme-images">
+					<li class="active"><a href="#" data-img="yuno.jpg">Y U NO guy</a></li>
+					<li><a href="#" data-img="loktarian.jpg">Loktarian</a></li>
+					<li><a href="#" data-img="trollface.jpg">Troll Face</a></li>
+					<li><a href="#" data-img="fry.jpg">Fry (Not sure if...)</a></li>
+					<li><a href="#" data-img="goodguy.jpg">Good Guy Greg</a></li>
+					<li><a href="#" data-img="kid.jpg">Success Kid</a></li>
+					<li><a href="#" data-img="philosoraptor.jpg">Philosoraptor</a></li>
+					<li><a href="#" data-img="scumbag.jpg">Scumbag Steve</a></li>
+					<li><a href="#" data-img="socailakward.jpg">Socially Awkward Penguin</a></li>
+					<li><a href="#" data-img="alone.jpg">Forever Alone</a></li>
+					<li><a href="#" data-img="doseke.jpg">Dos Equis Man</a></li>
+				</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Font Color <b class="caret"></b></a>
+					<ul class="dropdown-menu" id="meme-color">
+						<li class="active"><a href="#" data-color="#FFF">White</a></li>
+						<li><a href="#" data-color="#000">Black</a></li>
+						<li><a href="#" data-color="#888">Grey</a></li>
+						<li><a href="#" data-color="#F00">Red</a></li>
+						<li><a href="#" data-color="#0F0">Green</a></li>
+						<li><a href="#" data-color="#00F">Blue</a></li>
+						<li><a href="#" data-color="#FF0">Yellow</a></li>
+						<li><a href="#" data-color="#A020F0">Purple</a></li>
+						<li><a href="#" data-color="#FFAED5">Pink</a></li>
+					</ul>
+				</li>
+				<li>
+					<form id="api-key-form" class="navbar-form">
+						<button class="btn btn-danger" id="api-key" title="Change API Key">API KEY</button>
+						<input type="text" id="api-key-input" value="eef75ee1f4d14ddf5e48e67e6531f739" style="display: none;" />
+					</form>
+				</li>
+			</ul>
+			<ul class="nav pull-right">
+				<li class="active"><a href="#" id="generate">Generate!</a></li>
+			</ul>
+		</div>
+	</div>
 </div>
 <div class="container">
-    <div class="span12">
-        <div class="row">
-            <canvas id="cvs">Get a real browser! http://www.google.com/chrome </canvas>
-        </div>
-        <div class="row">
-            <input type="text" class="span7" id="text-top" placeholder="Top Line" />
-        </div>
-        <div class="row">
-            <input type="text" class="span7" id="text-bottom" placeholder="Bottom Line" />
-        </div>
-        <div class="row">
-            <input type="text" class="span12" id="img-link" placeholder="Generated image url will appear here." />
-        </div>
-    </div>              
+	<div class="span12">
+		<div class="row">
+			<canvas id="cvs">Get a real browser! http://www.google.com/chrome </canvas>
+		</div>
+		<div class="row">
+			<input type="text" class="span7" id="text-top" placeholder="Top Line"/>
+		</div>
+		<div class="row">
+			<input type="text" class="span7" id="text-bottom" placeholder="Bottom Line"/>
+		</div>
+		<div class="row">
+			<input type="text" class="span7" id="img-link" placeholder="Generated image url will appear here."/>
+			<img src="images/spinner.gif" id="spinner" class="vertical-align: middle'" hidden/>
+		</div>
+		<div class="row">
+			<div class="alert alert-error">
+				<strong>Oh snap!</strong> There are only 50 images per hour that can be generated and stored on imgur. If you cannot generate an image, please provide your own API Key to generate more! More information can be found <a href="http://imgur.com/register/api_anon" target="_blank" title="open imgur.com in a new window">Here</a>.
+			</div>
+		</div>
+	</div>
 </div>
-  
-
-
-<script type='text/javascript'>
-
-var meme_image_list = $('#meme-images > li'),
-    active_meme = meme_image_list.filter('.active')[0].children[0].getAttribute('data-img'),
-    color_list = $('#meme-color > li'),
-    active_color = color_list.filter('.active')[0].children[0].getAttribute('data-color'),
-    canvas = $('#cvs')[0],
-    top_input = $('#text-top'),
-    bottom_input = $('#text-bottom'),
-    generate = $('#generate'),
-    userlink = $('#img-link'),
-    ctx = canvas.getContext('2d'),
-    hold_top = '',
-    hold_bottom = '',
-    PATH = 'images/';
-
-
-function draw() {
-    var img = $("<img />")[0];
-    img.src = PATH + active_meme;
-    img.onload = function(e) {
-        canvas.height = img.height;
-        canvas.width = img.width;
-        ctx.save();
-        ctx.font = "20pt Arial";
-        ctx.textAlign = "center";
-        ctx.fillStyle = active_color;
-        ctx.clearRect(0, 0, img.height, img.width);
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        ctx.fillText(hold_top, img.width / 2, 30, img.width);
-        ctx.fillText(hold_bottom, img.width / 2, img.height - 20, img.width);
-        ctx.restore();
-    };
-}
-
-// top line input
-top_input.keyup(function(e) {
-   hold_top = this.value;
-    draw();
-});
-
-// bottom line input
-bottom_input.keyup(function(e) {
-   hold_bottom = this.value;
-    draw();
-});
-
-// meme image dropdown
-meme_image_list.click(function(e) {
-    meme_image_list.each(function(i, el) {
-        if (e.target.parentNode != el) {
-            el.className = '';
-        } else {
-            el.className = 'active';
-            active_meme = el.children[0].getAttribute('data-img');
-        }
-    });
-	draw();
-});
-
-// meme color dropdown
-color_list.click(function(e) {
-    color_list.each(function(i, el) {
-        if (e.target.parentNode != el) {
-            el.className = '';
-        } else {
-            el.className = 'active';
-            active_color = el.children[0].getAttribute('data-color');
-        }
-    });
-    draw();
-});
-
-generate.click(function(e) {
-	e.preventDefault();
-	var dataURL = canvas.toDataURL("image/png").split(',')[1];
-	$.ajax({
-		url: 'http://api.imgur.com/2/upload.json',
-		type: 'POST',
-		data: {
-			type: 'base64',
-			key: 'eef75ee1f4d14ddf5e48e67e6531f739',
-			image: dataURL
-		},
-		dataType: 'json'
-	}).success(function(data) {
-		var w = window.open();
-		userlink.val(data['upload']['links']['original']);
-		userlink[0].select();
-		userlink[0].focus();
-	}).error(function() {
-		alert('Could not reach api.imgur.com. Sorry :(');
-	});
-});
-
-draw();
-
-</script>
+<script type='text/javascript' src='js/jquery.js'></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type='text/javascript' src="js/app.js"></script>
 </body>
 </html>
