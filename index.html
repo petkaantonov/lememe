@@ -180,10 +180,10 @@ generate.click(function(e) {
 function update_key(e) {
 	$(this).unbind('blur', update_key);
 	this.type = 'hidden';
-	api_key_btn.hidden = false;
+	api_key_btn.hide();
 }
 api_key_btn.click(function(e) {
-	this.hidden = true;
+	$(this).show();
 	api_key_input.type = 'text';
 	api_key_input.bind('blur', update_key);
 });
