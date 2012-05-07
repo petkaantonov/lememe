@@ -1,147 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>LeMEME Generator</title>
-  
-  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-  <script type="text/javascript" src="http://fiddle.jshell.net/js/lib/bootstrap-2.0.2.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
-  <style type='text/css'>
-    body {
- padding-top: 48px;
- padding-bottom: 10px;    
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>LeMEME Generator</title>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+<script type="text/javascript" src="http://fiddle.jshell.net/js/lib/bootstrap-2.0.2.js"></script>
+<link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+<style type='text/css'>
+body {
+	padding-top: 48px;
+	padding-bottom: 10px;    
 }
 #cvs {
- outline: 2px dashed red;   
+	outline: 2px dashed red;   
 }
-  </style>
-  
+</style>
 </head>
 <body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a href="/" class="brand">LeMeme Generator</a>
-            <ul class="nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Base Image <b class="caret"></b></a>
-                    <ul class="dropdown-menu" id="meme-images">
-                      <li class="active"><a href="#" data-img="yuno.jpg">Y U NO guy</a></li>
-                      <li><a href="#" data-img="loktarian.jpg">Loktarian</a></li>
-                      <li><a href="#" data-img="trollface.jpg">Troll Face</a></li>
-                      <li><a href="#" data-img="scumbag.jpg">Scumbag Steve</a></li>
-                    </ul>
-                  </li>
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Font Color <b class="caret"></b></a>
-                    <ul class="dropdown-menu" id="meme-color">
-                      <li class="active"><a href="#" data-color="#000">Black</a></li>
-                      <li><a href="#" data-color="#fff">White</a></li>
-                    </ul>
-                  </li>
-            </ul>      
-            <ul class="nav pull-right">
-                <li class="active"><a href="#" id="generate">Generate!</a></li>
-            </ul>
-        </div>
-    </div>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a href="/" class="brand">LeMeme Generator</a>
+			<ul class="nav">
+				<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Base Image <b class="caret"></b></a>
+				<ul class="dropdown-menu" id="meme-images">
+					<li class="active"><a href="#" data-img="yuno.jpg">Y U NO guy</a></li>
+					<li><a href="#" data-img="loktarian.jpg">Loktarian</a></li>
+					<li><a href="#" data-img="trollface.jpg">Troll Face</a></li>
+					<li><a href="#" data-img="scumbag.jpg">Scumbag Steve</a></li>
+				</ul>
+				</li>
+				<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Font Color <b class="caret"></b></a>
+				<ul class="dropdown-menu" id="meme-color">
+					<li class="active"><a href="#" data-color="#000">Black</a></li>
+					<li><a href="#" data-color="#fff">White</a></li>
+				</ul>
+				</li>
+			</ul>
+			<ul class="nav pull-right">
+				<li class="active"><a href="#" id="generate">Generate!</a></li>
+			</ul>
+		</div>
+	</div>
 </div>
 <div class="container">
-    <div class="span12">
-        <div class="row">
-            <canvas id="cvs">Get a real browser! http://www.google.com/chrome </canvas>
-        </div>
-        <div class="row">
-            <input type="text" class="span7" id="text-top" placeholder="Top Line" />
-        </div>
-        <div class="row">
-            <input type="text" class="span7" id="text-bottom" placeholder="Bottom Line" />
-        </div>
-        <div class="row">
-            <input type="text" class="span12" id="img-link" placeholder="Generated image url will appear here." />
-        </div>
-    </div>              
+	<div class="span12">
+		<div class="row">
+			<canvas id="cvs">Get a real browser! http://www.google.com/chrome </canvas>
+		</div>
+		<div class="row">
+			<input type="text" class="span7" id="text-top" placeholder="Top Line"/>
+		</div>
+		<div class="row">
+			<input type="text" class="span7" id="text-bottom" placeholder="Bottom Line"/>
+		</div>
+		<div class="row">
+			<input type="text" class="span12" id="img-link" placeholder="Generated image url will appear here."/>
+			<img src="images/spinner.gif" id="spinner" hidden/>
+		</div>
+	</div>
 </div>
-  
-
-
 <script type='text/javascript'>
-
 var meme_image_list = $('#meme-images > li'),
-    active_meme = meme_image_list.filter('.active')[0].children[0].getAttribute('data-img'),
-    color_list = $('#meme-color > li'),
-    active_color = color_list.filter('.active')[0].children[0].getAttribute('data-color'),
-    canvas = $('#cvs')[0],
-    top_input = $('#text-top'),
-    bottom_input = $('#text-bottom'),
-    generate = $('#generate'),
-    userlink = $('#img-link'),
-    ctx = canvas.getContext('2d'),
-    hold_top = '',
-    hold_bottom = '',
-    PATH = 'images/';
-
-
+	active_meme = meme_image_list.filter('.active')[0].children[0].getAttribute('data-img'),
+	color_list = $('#meme-color > li'),
+	active_color = color_list.filter('.active')[0].children[0].getAttribute('data-color'),
+	canvas = $('#cvs')[0],
+	top_input = $('#text-top'),
+	bottom_input = $('#text-bottom'),
+	generate = $('#generate'),
+	userlink = $('#img-link'),
+	spinner = $('#spinner'),
+	ctx = canvas.getContext('2d'),
+	hold_top = '',
+	hold_bottom = '',
+	PATH = 'images/';
 function draw() {
-    var img = $("<img />")[0];
-    img.src = PATH + active_meme;
-    img.onload = function(e) {
-        canvas.height = img.height;
-        canvas.width = img.width;
-        ctx.save();
-        ctx.font = "20pt Arial";
-        ctx.textAlign = "center";
-        ctx.fillStyle = active_color;
-        ctx.clearRect(0, 0, img.height, img.width);
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        ctx.fillText(hold_top, img.width / 2, 30, img.width);
-        ctx.fillText(hold_bottom, img.width / 2, img.height - 20, img.width);
-        ctx.restore();
-    };
+	var img = $("<img />")[0];
+	img.src = PATH + active_meme;
+	img.onload = function(e) {
+		canvas.height = img.height;
+		canvas.width = img.width;
+		ctx.save();
+		ctx.font = "20pt Arial";
+		ctx.textAlign = "center";
+		ctx.fillStyle = active_color;
+		ctx.clearRect(0, 0, img.height, img.width);
+		ctx.drawImage(img, 0, 0, img.width, img.height);
+		ctx.fillText(hold_top, img.width / 2, 30, img.width);
+		ctx.fillText(hold_bottom, img.width / 2, img.height - 20, img.width);
+		ctx.restore();
+	};
 }
-
 // top line input
 top_input.keyup(function(e) {
    hold_top = this.value;
-    draw();
+	draw();
 });
-
 // bottom line input
 bottom_input.keyup(function(e) {
    hold_bottom = this.value;
-    draw();
-});
-
-// meme image dropdown
-meme_image_list.click(function(e) {
-    meme_image_list.each(function(i, el) {
-        if (e.target.parentNode != el) {
-            el.className = '';
-        } else {
-            el.className = 'active';
-            active_meme = el.children[0].getAttribute('data-img');
-        }
-    });
 	draw();
 });
-
+// meme image dropdown
+meme_image_list.click(function(e) {
+	meme_image_list.each(function(i, el) {
+		if (e.target.parentNode != el) {
+			el.className = '';
+		} else {
+			el.className = 'active';
+			active_meme = el.children[0].getAttribute('data-img');
+		}
+	});
+	draw();
+});
 // meme color dropdown
 color_list.click(function(e) {
-    color_list.each(function(i, el) {
-        if (e.target.parentNode != el) {
-            el.className = '';
-        } else {
-            el.className = 'active';
-            active_color = el.children[0].getAttribute('data-color');
-        }
-    });
-    draw();
+	color_list.each(function(i, el) {
+		if (e.target.parentNode != el) {
+			el.className = '';
+		} else {
+			el.className = 'active';
+			active_color = el.children[0].getAttribute('data-color');
+		}
+	});
+	draw();
 });
-
 generate.click(function(e) {
 	e.preventDefault();
+	spinner.show();
 	var dataURL = canvas.toDataURL("image/png").split(',')[1];
 	$.ajax({
 		url: 'http://api.imgur.com/2/upload.json',
@@ -153,17 +142,18 @@ generate.click(function(e) {
 		},
 		dataType: 'json'
 	}).success(function(data) {
-		var w = window.open();
+		top_input.val('');
+		bottom_input.val('');
+		spinner.hide();
 		userlink.val(data['upload']['links']['original']);
 		userlink[0].select();
 		userlink[0].focus();
 	}).error(function() {
 		alert('Could not reach api.imgur.com. Sorry :(');
+		spinner.hide();
 	});
 });
-
 draw();
-
 </script>
 </body>
 </html>
