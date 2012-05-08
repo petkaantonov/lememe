@@ -4,6 +4,8 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>LeMEME Generator</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/minicolors.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.ui.css">
 <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
@@ -11,6 +13,7 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<a href="/" class="brand">LeMeme Generator</a>
+			<form id="nav-form" class="navbar-form">
 			<ul class="nav">
 				<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Base Image <b class="caret"></b></a>
@@ -29,30 +32,32 @@
 					<li><a href="#" data-img="doseke.jpg">Dos Equis Man</a></li>
 				</ul>
 				</li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Font Color <b class="caret"></b></a>
-					<ul class="dropdown-menu" id="meme-color">
-						<li class="active"><a href="#" data-color="#FFF">White</a></li>
-						<li><a href="#" data-color="#000">Black</a></li>
-						<li><a href="#" data-color="#888">Grey</a></li>
-						<li><a href="#" data-color="#F00">Red</a></li>
-						<li><a href="#" data-color="#0F0">Green</a></li>
-						<li><a href="#" data-color="#00F">Blue</a></li>
-						<li><a href="#" data-color="#FF0">Yellow</a></li>
-						<li><a href="#" data-color="#A020F0">Purple</a></li>
-						<li><a href="#" data-color="#FFAED5">Pink</a></li>
-					</ul>
+				<li>
+					<p class="navbar-text"><strong>Settings </strong></p>
 				</li>
 				<li>
-					<form id="api-key-form" class="navbar-form">
-						<button class="btn btn-danger" id="api-key" title="Change API Key">API KEY</button>
-						<input type="text" id="api-key-input" value="eef75ee1f4d14ddf5e48e67e6531f739" style="display: none;" />
-					</form>
+					<input type="hidden" name="color1" id="color1" class="color-picker" size="6" maxlength="7" autocomplete="off" value="#FFFFFF">
+				</li>
+				<li>
+					<input type="hidden" name="color2" id="color2" class="color-picker" size="6" maxlength="7" autocomplete="off" value="#000000">
+				</li>
+				<li>
+					<input type="text" id="font-size" style="text-align: center; width: 32px;" title="Font Size (px)" />
+				</li>
+				<li>
+					<div id="slider-font-size" class="span2" style="margin-top: 14px;"></div>
 				</li>
 			</ul>
 			<ul class="nav pull-right">
-				<li class="active"><a href="#" id="generate">Generate!</a></li>
+				<li>
+					<button type="button" class="btn btn-info" id="api-key" title="Change API Key">API KEY</button>
+					<input type="text" id="api-key-input" value="eef75ee1f4d14ddf5e48e67e6531f739" style="display: none;" />
+				</li>
+				<li class="active">
+					<button type="button" class="btn btn-primary" id="generate" title="Generate LeMEME">Generate</button>
+				</li>
 			</ul>
+			</form>
 		</div>
 	</div>
 </div>
@@ -80,6 +85,8 @@
 </div>
 <script type='text/javascript' src='js/jquery.js'></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/minicolors.js"></script>
+<script type="text/javascript" src="js/jquery.ui.js"></script>
 <script type='text/javascript' src="js/app.js"></script>
 </body>
 </html>
