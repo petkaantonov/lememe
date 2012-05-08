@@ -81,6 +81,8 @@ generate.click(function(e) {
 	}).success(function(data) {
 		top_input.val('');
 		bottom_input.val('');
+		hold_top = '';
+		hold_bottom = '';
 		spinner.hide();
 		userlink.val(data['upload']['links']['original']);
 		userlink[0].select();
