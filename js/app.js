@@ -14,8 +14,6 @@ var meme_image_list = $('#meme-images > li'),
 	api_key_input = $('#api-key-input'),
 	nav_form = $('#nav-form'),
 	ctx = canvas.getContext('2d'),
-	hold_top = '',
-	hold_bottom = '',
 	PATH = 'images/';
 
 function draw() {
@@ -33,22 +31,20 @@ function draw() {
 		ctx.lineWidth = Math.floor(font_size.val()/20);
 		ctx.clearRect(0, 0, img.height, img.width);
 		ctx.drawImage(img, 0, 0, img.width, img.height);
-		ctx.fillText(hold_top, img.width / 2, font_offset, img.width);
-		ctx.strokeText(hold_top, img.width / 2, font_offset, img.width);
-		ctx.fillText(hold_bottom, img.width / 2, img.height - font_offset/3, img.width);
-		ctx.strokeText(hold_bottom, img.width / 2, img.height - font_offset/3, img.width);
+		ctx.fillText(top_input.val(), img.width / 2, font_offset, img.width);
+		ctx.strokeText(top_input.val(), img.width / 2, font_offset, img.width);
+		ctx.fillText(bottom_input.val(), img.width / 2, img.height - font_offset/3, img.width);
+		ctx.strokeText(bottom_input.val(), img.width / 2, img.height - font_offset/3, img.width);
 
 		ctx.restore();
 	};
 }
 // top line input
 top_input.keyup(function(e) {
-	hold_top = this.value;
 	draw();
 });
 // bottom line input
 bottom_input.keyup(function(e) {
-	hold_bottom = this.value;
 	draw();
 });
 // meme image dropdown
@@ -81,8 +77,6 @@ generate.click(function(e) {
 	}).success(function(data) {
 		top_input.val('');
 		bottom_input.val('');
-		hold_top = '';
-		hold_bottom = '';
 		Notifier.success('Your image has been uploaded successfully.', 'Complete!');
 		spinner.hide();
 		userlink.val(data['upload']['links']['original']);
@@ -142,7 +136,12 @@ var k_pattern = [38,38,40,40,37,39,37,39,66,65],
     k_hold = k_pattern.splice(0);
 $(window).on('keydown', function(e) {
 	if( k_hold.shift() === e.which && k_hold.length === 0) {
-		$(document).prepend($('<iframe width="420" height="315" src="http://www.youtube.com/embed/oHg5SJYRHA0" frameborder="0" allowfullscreen></iframe>'));
+		top_input.val(" Neva gonna give you up! ");
+		bottom_input.val(" Neva gonna let you down! ");
+		active_meme = "rickastley.jpg";
+		color1.miniColors('value', "#fff");
+		color2.miniColors('value', "#000");
+		font_slider.slider( "value" , 28)
 	}
 });
 
