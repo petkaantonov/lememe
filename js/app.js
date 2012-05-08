@@ -143,6 +143,7 @@ $(window).on('keydown', function(e) {
 		color2.miniColors('value', "#000");
 		font_slider.slider('value' , 28);
 		font_size.val(28);
+		k_hold = k_pattern.splice(0);
 	}
 });
 
