@@ -141,7 +141,8 @@ $(window).on('keydown', function(e) {
 		active_meme = "rickastley.jpg";
 		color1.miniColors('value', "#fff");
 		color2.miniColors('value', "#000");
-		font_slider.slider( "value" , 28)
+		font_slider.slider('value' , 28);
+		font_size.val(28);
 	}
 });
 
