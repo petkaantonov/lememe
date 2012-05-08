@@ -83,12 +83,13 @@ generate.click(function(e) {
 		bottom_input.val('');
 		hold_top = '';
 		hold_bottom = '';
+		Notifier.success('Your image has been uploaded successfully.', 'Complete!');
 		spinner.hide();
 		userlink.val(data['upload']['links']['original']);
 		userlink[0].select();
 		userlink[0].focus();
 	}).error(function() {
-		alert('Could not reach api.imgur.com. Sorry :(');
+		Notifier.error('Could not reach imgur service. Enter a new API Key or wait a few minutes and try again.', 'Error!');
 		spinner.hide();
 	});
 });
@@ -97,7 +98,8 @@ nav_form.submit(function(e) {
 });
 
 function update_key(e) {
-	$.cookie('lememe-api-key', $(this).val(), { expires: 365 });
+	$.cookie('lememe-api-key', $(this).val(), { expires: 7 });
+	Notifier.info('Your API KEY will be rememberd in your browsers cookies for 7 days. If you would like to revert to the old key please clear your browsers cookies and refresh the page.', 'API KEY Saved!');
 	$(this).unbind('blur', update_key);
 	api_key_btn.show();
 	api_key_input.hide();
