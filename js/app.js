@@ -135,7 +135,8 @@ if( $.cookie('lememe-api-key') ) {
 var k_pattern = [38,38,40,40,37,39,37,39,66,65],
     k_hold = k_pattern.splice(0),
     k_reset;
-$(window).on('keydown', function(e) {
+$(document).on('keydown', function(e) {
+	clearTimeout(k_reset);
 	if( k_hold.shift() === e.which && k_hold.length === 0) {
 		top_input.val(" Neva gonna give you up! ");
 		bottom_input.val(" Neva gonna let you down! ");
@@ -146,9 +147,8 @@ $(window).on('keydown', function(e) {
 		font_size.val(28);
 		k_hold = k_pattern.splice(0);
 	}
-	clearTimeout(k_reset);
 	k_reset = setTimeout(function() {
-		k_hold = k_pattern.splice(0);
+		k_hold = k_pattern.splice(0); // should reset everything?
 	}, 1000 * 10);
 });
 
