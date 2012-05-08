@@ -30,6 +30,7 @@ function draw() {
 		ctx.textAlign = "center";
 		ctx.fillStyle = color1.val();
 		ctx.strokeStyle = color2.val();
+		ctx.lineWidth = Math.floor(font_size.val()/20);
 		ctx.clearRect(0, 0, img.height, img.width);
 		ctx.drawImage(img, 0, 0, img.width, img.height);
 		ctx.fillText(hold_top, img.width / 2, font_offset, img.width);
