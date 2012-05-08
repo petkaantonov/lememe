@@ -98,8 +98,10 @@ nav_form.submit(function(e) {
 });
 
 function update_key(e) {
-	$.cookie('lememe-api-key', $(this).val(), { expires: 7 });
-	Notifier.info('Your API KEY will be rememberd in your browsers cookies for 7 days. If you would like to revert to the old key please clear your browsers cookies and refresh the page.', 'API KEY Saved!');
+	if( $.cookie('lememe-api-key') != $(this).val() ) {
+		$.cookie('lememe-api-key', $(this).val(), { expires: 7 });
+		Notifier.info('Your API KEY will be rememberd in your browsers cookies for 7 days. If you would like to revert to the old key please clear your browsers cookies and refresh the page.', 'API KEY Saved!');
+	}
 	$(this).unbind('blur', update_key);
 	api_key_btn.show();
 	api_key_input.hide();
