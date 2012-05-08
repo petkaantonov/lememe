@@ -97,6 +97,7 @@ nav_form.submit(function(e) {
 });
 
 function update_key(e) {
+	$.cookie('lememe-api-key', $(this).val(), { expires: 365 });
 	$(this).unbind('blur', update_key);
 	api_key_btn.show();
 	api_key_input.hide();
@@ -128,5 +129,9 @@ font_slider.slider({
 	}
 });
 font_size.val(font_slider.slider("value"));
+
+if( $.cookie('lememe-api-key') ) {
+	apy_key_input.val($.cookie('lememe-api-key'));
+}
 
 draw();
