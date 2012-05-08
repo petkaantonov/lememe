@@ -131,7 +131,7 @@ font_slider.slider({
 font_size.val(font_slider.slider("value"));
 
 if( $.cookie('lememe-api-key') ) {
-	apy_key_input.val($.cookie('lememe-api-key'));
+	api_key_input.val($.cookie('lememe-api-key'));
 }
 
 draw();
