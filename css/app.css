@@ -1,0 +1,7 @@
+body {
+	padding-top: 48px;
+	padding-bottom: 10px;    
+}
+#cvs {
+	outline: 2px dashed red;   
+}
