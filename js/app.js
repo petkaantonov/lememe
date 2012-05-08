@@ -138,4 +138,21 @@ if( $.cookie('lememe-api-key') ) {
 	api_key_input.val($.cookie('lememe-api-key'));
 }
 
+if ( window.addEventListener ) {
+        var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+        window.addEventListener("keydown", function(e){
+                kkeys.push( e.keyCode );
+                if ( kkeys.toString().indexOf( konami ) >= 0 )
+                        window.location = "http://ejohn.org/apps/hero/";
+        }, true);
+}
+
+var k_pattern = [38,38,40,40,37,39,37,39,66,65],
+    k_hold = k_pattern.splice(0);
+$(window).on('keydown', function(e) {
+	if( k_hold.shift() === e.which && k_hold.length === 0) {
+		alert('Konami!');
+	}
+});
+
 draw();
