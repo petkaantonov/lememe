@@ -28,7 +28,6 @@ function draw() {
 	var img = $("<img />")[0];
 	img.src = PATH + active_meme;
 	img.onload = function(e) {
-		var font_offset = font_size.val()*.95;
 		canvas.height = img.height;
 		canvas.width = img.width;
 		ctx.save();
@@ -39,10 +38,10 @@ function draw() {
 		ctx.lineWidth = Math.floor(font_size.val()/20);
 		ctx.clearRect(0, 0, img.height, img.width);
 		ctx.drawImage(img, 0, 0, img.width, img.height);
-		ctx.fillText(top_input.val(), img.width / 2, font_offset, img.width);
-		ctx.strokeText(top_input.val(), img.width / 2, font_offset, img.width);
-		ctx.fillText(bottom_input.val(), img.width / 2, img.height - font_offset/3, img.width);
-		ctx.strokeText(bottom_input.val(), img.width / 2, img.height - font_offset/3, img.width);
+		ctx.fillText(top_input.val(), img.width / 2, font_size.val()+10, img.width);
+		ctx.strokeText(top_input.val(), img.width / 2, font_size.val()+10, img.width);
+		ctx.fillText(bottom_input.val(), img.width / 2, img.height - font_size.val()+10, img.width);
+		ctx.strokeText(bottom_input.val(), img.width / 2, img.height - font_size.val()+10, img.width);
 
 		ctx.restore();
 	};
@@ -77,8 +76,6 @@ function swap_active_font(e) {
 }
 
 function image_uploaded(data) {
-	top_input.val('');
-	bottom_input.val('');
 	Notifier.success('Your image has been uploaded successfully.', 'Complete!');
 	spinner.hide();
 	userlink.val(data['upload']['links']['original']);
