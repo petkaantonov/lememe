@@ -23,3 +23,11 @@ hr.soften {
 	outline: none;
 	width: 360px;
 }
+
+.label-dropdown-selection {
+	height: 18px;
+	line-height: 18px;
+	vertical-align: middle;
+	padding-left: 8px;
+	color: #444;
+}
