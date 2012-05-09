@@ -38,8 +38,8 @@ function draw() {
 		ctx.lineWidth = Math.floor(font_size.val()/20);
 		ctx.clearRect(0, 0, img.height, img.width);
 		ctx.drawImage(img, 0, 0, img.width, img.height);
-		ctx.fillText(top_input.val(), img.width / 2, parseFloat(font_size.val())+5, img.width);
-		ctx.strokeText(top_input.val(), img.width / 2, parseFloat(font_size.val())+5, img.width);
+		ctx.fillText(top_input.val(), img.width / 2, parseFloat(font_size.val()), img.width);
+		ctx.strokeText(top_input.val(), img.width / 2, parseFloat(font_size.val()), img.width);
 		ctx.fillText(bottom_input.val(), img.width / 2, img.height - 10, img.width);
 		ctx.strokeText(bottom_input.val(), img.width / 2, img.height - 10, img.width);
 
