@@ -153,9 +153,8 @@ function init() {
 	font_size.val(font_slider.slider("value"));
 
 	/* preview font faces */
-	font_list.each(function(li) {
-		var link = li.children('a');
-		link.css('font-family', link[0].getAttribute('data-font'));
+	font_list.each(function() {
+		$(this).children('a').css('font-family', this.getAttribute('data-font'));
 	});
 
 	/* check for stored api key */
