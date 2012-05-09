@@ -27,4 +27,5 @@ hr.soften {
 .label-dropdown-selection {
 	padding: 4px 8px;
 	color: #444;
+	background-color: red;
 }
