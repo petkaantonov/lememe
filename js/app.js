@@ -132,6 +132,7 @@ function show_api_key_input(e) {
 function register_events() {
 	$([top_input[0], bottom_input[0]]).on('keyup', draw);
 	meme_image_list.on('click', swap_active_meme);
+	font_list.on('click', swap_active_font);
 	generate.on('click', generate_meme);
 	api_key_btn.on('click', show_api_key_input);
 	
