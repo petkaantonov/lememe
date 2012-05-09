@@ -1,3 +1,5 @@
+/* Vars */
+
 var meme_image_list = $('#meme-images > li'),
 	active_meme = meme_image_list.filter('.active')[0].children[0].getAttribute('data-img'),
 	color1 = $('#color1'),
@@ -12,10 +14,12 @@ var meme_image_list = $('#meme-images > li'),
 	font_size = $("#font-size"),
 	api_key_btn = $('#api-key'),
 	api_key_input = $('#api-key-input'),
-	nav_form = $('#nav-form'),
 	ctx = canvas.getContext('2d'),
 	PATH = 'images/';
 
+/* Draw function
+ * I render the image on the page
+ * */
 function draw() {
 	var img = $("<img />")[0];
 	img.src = PATH + active_meme;
@@ -39,17 +43,8 @@ function draw() {
 		ctx.restore();
 	};
 }
-// top line input
-top_input.keyup(function(e) {
-	draw();
-});
-// bottom line input
-bottom_input.keyup(function(e) {
-	draw();
-});
-// meme image dropdown
-meme_image_list.click(function(e) {
-	e.preventDefault();
+
+function swap_active_meme(e) {
 	meme_image_list.each(function(i, el) {
 		if (e.target.parentNode != el) {
 			el.className = '';
@@ -59,10 +54,25 @@ meme_image_list.click(function(e) {
 		}
 	});
 	draw();
-});
-
-generate.click(function(e) {
 	e.preventDefault();
+	return false;
+}
+
+function image_uploaded(data) {
+	top_input.val('');
+	bottom_input.val('');
+	Notifier.success('Your image has been uploaded successfully.', 'Complete!');
+	spinner.hide();
+	userlink.val(data['upload']['links']['original']);
+	userlink[0].select();
+	userlink[0].focus();
+}
+function image_upload_failed() {
+	Notifier.error('Could not reach imgur service. Enter a new API Key or wait a few minutes and try again.', 'Error!');
+	spinner.hide();
+}
+
+function generate_meme(e) {
 	spinner.show();
 	var dataURL = canvas.toDataURL("image/png").split(',')[1];
 	$.ajax({
@@ -70,86 +80,79 @@ generate.click(function(e) {
 		type: 'POST',
 		data: {
 			type: 'base64',
-			key: $('#api-key-input').val(),
+			key: api_key_input.val(),
 			image: dataURL
 		},
 		dataType: 'json'
-	}).success(function(data) {
-		top_input.val('');
-		bottom_input.val('');
-		Notifier.success('Your image has been uploaded successfully.', 'Complete!');
-		spinner.hide();
-		userlink.val(data['upload']['links']['original']);
-		userlink[0].select();
-		userlink[0].focus();
-	}).error(function() {
-		Notifier.error('Could not reach imgur service. Enter a new API Key or wait a few minutes and try again.', 'Error!');
-		spinner.hide();
-	});
-});
-$('.nosubmit-form').submit(function(e) {
+	}).success(image_uploaded).error(image_upload_failed);
 	e.preventDefault();
-});
+	return false;
+}
 
-function update_key(e) {
+function update_api_key(e) {
 	if( $.cookie('lememe-api-key') != $(this).val() ) {
 		$.cookie('lememe-api-key', $(this).val(), { expires: 7 });
 		Notifier.info('Your API KEY will be rememberd in your browsers cookies for 7 days. If you would like to revert to the old key please clear your browsers cookies and refresh the page.', 'API KEY Saved!');
 	}
-	$(this).unbind('blur', update_key);
+	$(this).unbind('blur', update_api_key);
 	api_key_btn.show();
 	api_key_input.hide();
+	e.preventDefault();
+	return false;
 }
-api_key_btn.click(function(e) {
+
+function show_api_key_input(e) {
 	api_key_btn.hide();
 	api_key_input.show();
-	api_key_input.bind('blur', update_key);
+	api_key_input.bind('blur', update_api_key);
 	api_key_input[0].select();
 	api_key_input[0].focus();
-});
-
-$('input.color-picker').miniColors({
-	change: function(hex, rgb) {
-		draw();
-	}
-});
-
-font_slider.slider({
-	range: "max",
-	min: 16,
-	max: 60,
-	value: 20,
-	slide: function(event, ui) {
-		font_size.val(ui.value);
-	},
-	change: function(event, ui) {
-		draw();
-	}
-});
-font_size.val(font_slider.slider("value"));
-
-if( $.cookie('lememe-api-key') ) {
-	api_key_input.val($.cookie('lememe-api-key'));
+	e.preventDefault();
+	return false;
 }
 
-var k_pattern = [38,38,40,40,37,39,37,39,66,65],
-    k_hold = k_pattern.splice(0),
-    k_reset;
-$(document).on('keydown', function(e) {
-	clearTimeout(k_reset);
-	if( k_hold.shift() === e.which && k_hold.length === 0) {
-		top_input.val(" Neva gonna give you up! ");
-		bottom_input.val(" Neva gonna let you down! ");
-		active_meme = "rickastley.jpg";
-		color1.miniColors('value', "#fff");
-		color2.miniColors('value', "#000");
-		font_slider.slider('value' , 28);
-		font_size.val(28);
-		k_hold = k_pattern.splice(0);
-	}
-	k_reset = setTimeout(function() {
-		k_hold = k_pattern.splice(0); // should reset everything?
-	}, 1000 * 10);
-});
+function register_events() {
+	$([top_input[0], bottom_input[0]]).on('keyup', draw);
+	meme_image_list.on('click', swap_active_meme);
+	generate.on('click', generate_meme);
+	api_key_btn.on('click', show_api_key_input);
+	
+	/* quick and dirty disable form submission */
+	$('.nosubmit-form').submit(function(e) {
+		e.preventDefault();
+		return false;
+	});
+}
 
-draw();
+function init() {
+	/* color picker init */
+	$('input.color-picker').miniColors({
+		change: function(hex, rgb) {
+			draw();
+		}
+	});
+
+	/* font slider init and control */
+	font_slider.slider({
+		range: "max",
+		min: 16,
+		max: 60,
+		value: 20,
+		slide: function(event, ui) {
+			font_size.val(ui.value);
+		},
+		change: function(event, ui) {
+			draw();
+		}
+	});
+	font_size.val(font_slider.slider("value"));
+
+	/* check for stored api key */
+	if( $.cookie('lememe-api-key') ) {
+		api_key_input.val($.cookie('lememe-api-key'));
+	}
+	/* draw the default image */
+	draw();
+}
+
+init();

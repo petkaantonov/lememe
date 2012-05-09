@@ -18,48 +18,8 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<a href="http://rlemon.github.com/lememe/" class="brand" title="LeMEME - Online Meme Generator - Free Trolling for all!">LeMeme Generator</a>
-			<form id="nav-form" class="nosubmit-form">
-			<ul class="nav">
-				<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Base Image <b class="caret"></b></a>
-				<ul class="dropdown-menu" id="meme-images">
-					<li class="active"><a href="#" data-img="yuno.jpg">Y U NO guy</a></li>
-					<li><a href="#" data-img="loktarian.jpg">Loktarian</a></li>
-					<li><a href="#" data-img="trollface.jpg">Troll Face</a></li>
-					<li><a href="#" data-img="fry.jpg">Fry (Not sure if...)</a></li>
-					<li><a href="#" data-img="goodguy.jpg">Good Guy Greg</a></li>
-					<li><a href="#" data-img="kid.jpg">Success Kid</a></li>
-					<li><a href="#" data-img="dontletgo.jpg">Helicopter Kid</a></li>
-					<li><a href="#" data-img="philosoraptor.jpg">Philosoraptor</a></li>
-					<li><a href="#" data-img="rainbowpony.jpg">Rainbow Pony</a></li>
-					<li><a href="#" data-img="scumbag.jpg">Scumbag Steve</a></li>
-					<li><a href="#" data-img="socailakward.jpg">Socially Awkward Penguin</a></li>
-					<li><a href="#" data-img="alone.jpg">Forever Alone</a></li>
-					<li><a href="#" data-img="doseke.jpg">Dos Equis Man</a></li>
-					<li><a href="#" data-img="hipster.jpg">Hipster Supreme</a></li>
-					<li><a href="#" data-img="pony.jpg">Happy Pony</a></li>
-					<li><a href="#" data-img="penguins.jpg">Friendly Penguins</a></li>
-					<li><a href="#" data-img="babygodfather.jpg">Baby Godfather</a></li>
-					<li><a href="#" data-img="photogenicguy.jpg">Overly Photogenic Guy</a></li>
-				</ul>
-				</li>
-				<li class="divider-vertical"></li>
-				<li>
-					<p class="navbar-text"><i class="icon-font icon-white" title="Text Settings"></i>&nbsp;&nbsp;</p>
-				</li>
-				<li>
-					<input type="hidden" name="color1" id="color1" class="color-picker" size="6" maxlength="7" autocomplete="off" value="#FFFFFF">
-				</li>
-				<li>
-					<input type="hidden" name="color2" id="color2" class="color-picker" size="6" maxlength="7" autocomplete="off" value="#000000">
-				</li>
-				<li>
-					<input type="text" id="font-size" style="text-align: center; width: 32px;" title="Font Size (px)" />
-				</li>
-				<li>
-					<div id="slider-font-size" class="span2" style="margin-top: 14px;"></div>
-				</li>
-			</ul>
+			<p class="navbar-text"><i class="icon-arrow-right icon-white"></i> New Meme</p>
+			<form class="nosubmit-form">
 			<ul class="nav pull-right">
 				<li>
 					<button type="button" class="btn btn-info" id="api-key" title="Change API Key">API KEY</button>
@@ -84,6 +44,62 @@
 		<div class="span6">
 			<form class="well nosubmit-form">
 				<fieldset>
+					<div class="control-group">
+						<div class="btn-group">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#meme-images">Image <span class="caret"></span></a>
+							<ul class="dropdown-menu" id="meme-images">
+								<li class="active"><a href="#" data-img="yuno.jpg">Y U NO guy</a></li>
+								<li><a href="#" data-img="loktarian.jpg">Loktarian</a></li>
+								<li><a href="#" data-img="trollface.jpg">Troll Face</a></li>
+								<li><a href="#" data-img="fry.jpg">Fry (Not sure if...)</a></li>
+								<li><a href="#" data-img="goodguy.jpg">Good Guy Greg</a></li>
+								<li><a href="#" data-img="kid.jpg">Success Kid</a></li>
+								<li><a href="#" data-img="dontletgo.jpg">Helicopter Kid</a></li>
+								<li><a href="#" data-img="philosoraptor.jpg">Philosoraptor</a></li>
+								<li><a href="#" data-img="rainbowpony.jpg">Rainbow Pony</a></li>
+								<li><a href="#" data-img="scumbag.jpg">Scumbag Steve</a></li>
+								<li><a href="#" data-img="socailakward.jpg">Socially Awkward Penguin</a></li>
+								<li><a href="#" data-img="alone.jpg">Forever Alone</a></li>
+								<li><a href="#" data-img="doseke.jpg">Dos Equis Man</a></li>
+								<li><a href="#" data-img="hipster.jpg">Hipster Supreme</a></li>
+								<li><a href="#" data-img="pony.jpg">Happy Pony</a></li>
+								<li><a href="#" data-img="penguins.jpg">Friendly Penguins</a></li>
+								<li><a href="#" data-img="babygodfather.jpg">Baby Godfather</a></li>
+								<li><a href="#" data-img="photogenicguy.jpg">Overly Photogenic Guy</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="btn-group">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#meme-font">Font <span class="caret"></span></a>
+							<ul class="dropdown-menu" id="meme-font">
+								<li class="active"><a href="#" data-font="'Chau Philomene One', sans-serif">Chau Philomene One</a></li>
+								<li><a href="#" data-font="'Russo One', sans-serif">Russo One</a></li>
+								<li><a href="#" data-font="'Days One', sans-serif">Days One</a></li>
+								<li><a href="#" data-font="'Gorditas', cursive">Gorditas</a></li>
+								<li><a href="#" data-font="'Bree Serif', serif">Bree Serif</a></li>
+								<li><a href="#" data-font="'Krona One', sans-serif">Krona One</a></li>
+								<li><a href="#" data-font="'Averia Gruesa Libre', cursive">Averia Gruesa Libre</a></li>
+								<li><a href="#" data-font="'Press Start 2P', cursive">Press Start 2P</a></li>
+								<li><a href="#" data-font="'Bowlby One SC', cursive">Bowlby One SC</a></li>
+								<li><a href="#" data-font="'Open Sans Condensed', sans-serif">Open Sans Condensed</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Colours</label>
+						<div class="controls">
+							<input type="hidden" name="color1" id="color1" class="color-picker" size="6" maxlength="7" autocomplete="off" value="#FFFFFF">
+							<input type="hidden" name="color2" id="color2" class="color-picker" size="6" maxlength="7" autocomplete="off" value="#000000">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Size</label>
+						<div class="controls">
+							<input type="text" id="font-size" style="text-align: center; width: 32px;" title="Font Size (px)" /> 
+							<div id="slider-font-size" class="span2" style="margin-top: 14px;"></div>
+						</div>
+					</div>
 					<div class="control-group">
 						<div class="controls">
 							<input type="text" class="span5" id="text-top" placeholder="Top Line"/>
