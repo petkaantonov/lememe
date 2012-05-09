@@ -53,7 +53,6 @@ function swap_active_meme(e) {
 			active_meme = el.children[0].getAttribute('data-img');
 		}
 	});
-	console.log('here');
 	draw();
 	e.preventDefault();
 	return false;
@@ -126,6 +125,9 @@ function register_events() {
 }
 
 function init() {
+	
+	register_events();
+	
 	/* color picker init */
 	$('input.color-picker').miniColors({
 		change: function(hex, rgb) {
