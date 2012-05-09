@@ -28,6 +28,7 @@ hr.soften {
 	display: inline-block;
 	padding: 4px 10px 4px;
 	font-size: 13px;
+	font-weight: bold;
 	line-height: 18px;
-	color: #454545;
+	color: #999;
 }

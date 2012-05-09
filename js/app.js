@@ -1,9 +1,12 @@
 /* Vars */
 
 var meme_image_list = $('#meme-images > li'),
+	font_list = $('#meme-fonts > li'),
 	active_meme = meme_image_list.filter('.active')[0].children[0].getAttribute('data-img'),
 	color1 = $('#color1'),
 	color2 = $('#color2'),
+	meme_label = $('#label-active-meme'),
+	font_label = $('#label-active-font'),
 	canvas = $('#cvs')[0],
 	top_input = $('#text-top'),
 	bottom_input = $('#text-bottom'),
@@ -148,6 +151,12 @@ function init() {
 		}
 	});
 	font_size.val(font_slider.slider("value"));
+
+	/* preview font faces */
+	font_list.each(function(li) {
+		var link = li.children('a');
+		link.css('font-family', link[0].getAttribute('data-font'));
+	});
 
 	/* check for stored api key */
 	if( $.cookie('lememe-api-key') ) {
