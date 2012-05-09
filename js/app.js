@@ -53,6 +53,7 @@ function swap_active_meme(e) {
 			active_meme = el.children[0].getAttribute('data-img');
 		}
 	});
+	console.log('here');
 	draw();
 	e.preventDefault();
 	return false;
