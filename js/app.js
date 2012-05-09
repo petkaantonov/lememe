@@ -154,7 +154,7 @@ function init() {
 
 	/* preview font faces */
 	font_list.each(function() {
-		var link = $(this).children('a').get(0);
+		var link = $(this).children('a')[0];
 		link.css('font-family', link.getAttribute('data-font'));
 	});
 
