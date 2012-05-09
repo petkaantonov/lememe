@@ -49,7 +49,7 @@ function draw() {
 }
 
 function swap_active_meme(e) {
-	font_list.each(function(i, el) {
+	meme_image_list.each(function(i, el) {
 		if (e.target.parentNode != el) {
 			el.className = '';
 		} else {
@@ -63,7 +63,7 @@ function swap_active_meme(e) {
 }
 
 function swap_active_font(e) {
-	meme_image_list.each(function(i, el) {
+	font_list.each(function(i, el) {
 		if (e.target.parentNode != el) {
 			el.className = '';
 		} else {
