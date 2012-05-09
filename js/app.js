@@ -3,6 +3,7 @@
 var meme_image_list = $('#meme-images > li'),
 	font_list = $('#meme-fonts > li'),
 	active_meme = meme_image_list.filter('.active')[0].children[0].getAttribute('data-img'),
+	active_font = font_list.filter('.active')[0].children[0].getAttribute('data-font'),
 	color1 = $('#color1'),
 	color2 = $('#color2'),
 	meme_label = $('#label-active-meme'),
@@ -31,7 +32,7 @@ function draw() {
 		canvas.height = img.height;
 		canvas.width = img.width;
 		ctx.save();
-		ctx.font = "bold " + font_size.val() + "px Arial";
+		ctx.font = "bold " + font_size.val() + "px " + active_font;
 		ctx.textAlign = "center";
 		ctx.fillStyle = color1.val();
 		ctx.strokeStyle = color2.val();
@@ -48,12 +49,27 @@ function draw() {
 }
 
 function swap_active_meme(e) {
-	meme_image_list.each(function(i, el) {
+	font_list.each(function(i, el) {
 		if (e.target.parentNode != el) {
 			el.className = '';
 		} else {
 			el.className = 'active';
 			active_meme = el.children[0].getAttribute('data-img');
+			meme_label.text($(el.children[0]).text());
+		}
+	});
+	draw();
+	e.preventDefault();
+}
+
+function swap_active_font(e) {
+	meme_image_list.each(function(i, el) {
+		if (e.target.parentNode != el) {
+			el.className = '';
+		} else {
+			el.className = 'active';
+			active_font = el.children[0].getAttribute('data-font');
+			font_label.text($(el.children[0]).text());
 		}
 	});
 	draw();
