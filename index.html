@@ -18,7 +18,7 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<a href="http://rlemon.github.com/lememe/" class="brand" title="LeMEME - Online Meme Generator - Free Trolling for all!">LeMeme Generator</a>
-			<form id="nav-form" class="navbar-form">
+			<form id="nav-form" class="nosubmit-form">
 			<ul class="nav">
 				<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Base Image <b class="caret"></b></a>
@@ -71,43 +71,45 @@
 	</div>
 </div>
 <div class="container">
-	<div class="span12">
-		<div class="row">
-			<canvas id="cvs">Get a real browser! http://www.google.com/chrome </canvas>
-		</div>
-		<div class="row well">
+	<div class="row">
+		<div class="span6">
 			<div class="row">
-				<input type="text" id="text-top" placeholder="Top Line"/>
-			</div>
-			<div class="row">
-				<input type="text" id="text-bottom" placeholder="Bottom Line"/>
-			</div>
-			<div class="row">
-				<button type="button" class="btn btn-primary btn-large" id="generate" title="Generate LeMEME">Generate</button>
+				<canvas id="cvs">Get a real browser! http://www.google.com/chrome </canvas>
 			</div>
 			<div class="row">
 				<input type="text" id="img-link" placeholder="Generated image url will appear here."/>
 				<img src="images/spinner.gif" id="spinner" class="vertical-align: middle'" hidden/>
 			</div>
-			<div class="row">
-				<div class="alert alert-info">
-					<button class="close" data-dismiss="alert">×</button>
-					<strong>Oh snap!</strong> There are only 50 images per hour that can be generated and stored on imgur. If you cannot generate an image, please provide your own API Key to generate more! More information can be found <a href="http://imgur.com/register/api_anon" target="_blank" title="open imgur.com in a new window">Here</a>.
-				</div>
-			</div>
+		</div>
+		<div class="span6">
+			<form class="well nosubmit-form">
+				<fieldset>
+					<div class="control-group">
+						<div class="controls">
+							<input type="text" id="text-top" placeholder="Top Line"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<input type="text" id="text-bottom" placeholder="Bottom Line"/>
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="button" class="btn btn-primary btn-large" id="generate" title="Generate LeMEME">Generate</button>
+					</div>
+				</fieldset>
+			</form>
 		</div>
 	</div>
-	<footer class="span12">
-		<hr class="soften">
-		<p>
-			Developed by rlemon - <a href="https://github.com/rlemon/lememe/" title="Fork on GitHub">Fork on GitHub</a>
-			<span class="pull-right">
-				<a href="http://rlemon.github.com/lememe/about.html" title="About LeMEME">About</a>
-				<a href="http://rlemon.github.com/lememe/contact.html" title="Contact rlemon">Contact</a>
-				<a href="http://rlemon.github.com/lememe/legal.html" title="Legal mumbo jumbo">Legal</a>
-			</span>
-		</p>
-	</footer>
+	<hr class="soften">
+	<div class="row footer">
+		Developed by rlemon - <a href="https://github.com/rlemon/lememe/" title="Fork on GitHub">Fork on GitHub</a>
+		<span class="pull-right">
+			<a href="http://rlemon.github.com/lememe/about.html" title="About LeMEME">About</a>
+			<a href="http://rlemon.github.com/lememe/contact.html" title="Contact rlemon">Contact</a>
+			<a href="http://rlemon.github.com/lememe/legal.html" title="Legal mumbo jumbo">Legal</a>
+		</span>
+	</div>
 </div>
 <script type='text/javascript' src='js/jquery.js'></script>
 <script type='text/javascript' src='js/cookie.js'></script>

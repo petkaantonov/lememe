@@ -87,7 +87,7 @@ generate.click(function(e) {
 		spinner.hide();
 	});
 });
-nav_form.submit(function(e) {
+$('.nosubmit-form').submit(function(e) {
 	e.preventDefault();
 });
 
