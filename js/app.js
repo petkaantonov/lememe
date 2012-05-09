@@ -55,7 +55,6 @@ function swap_active_meme(e) {
 	});
 	draw();
 	e.preventDefault();
-	return false;
 }
 
 function image_uploaded(data) {
