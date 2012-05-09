@@ -154,7 +154,7 @@ function init() {
 
 	/* preview font faces */
 	font_list.each(function() {
-		console.log(this);
+		console.log($(this).children('a'));
 		$(this).children('a').css('font-family', this.getAttribute('data-font'));
 	});
 
