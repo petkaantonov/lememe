@@ -32,3 +32,13 @@ hr.soften {
 	line-height: 18px;
 	color: #999;
 }
+
+.slider.addon-slider { 
+	width: 140px; 
+	padding-left: 10px; 
+	padding-right: 12px; 
+}
+
+input[data-slider] {
+	margin-bottom: 0px;
+}

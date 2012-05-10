@@ -10,7 +10,6 @@
 <meta name="copyright" content="Robert Lemon 2012" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/minicolors.css">
-<link rel="stylesheet" type="text/css" href="css/jquery.ui.css">
 <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
@@ -94,10 +93,23 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label">Size</label>
+						<label class="control-label">Text Size</label>
 						<div class="controls">
-							<input type="text" id="font-size" style="text-align: center; width: 32px;" title="Font Size (px)" /> 
-							<div id="slider-font-size" class="span2" style="margin-top: 14px;"></div>
+							<div class="input-prepend input-append">
+								<div class="add-on slider addon-slider" id="font-size-slider"></div>
+								<input data-slider="#font-size-slider" data-max="40" data-min="10" data-step="1" value="20" class="span1" id="font-size">
+								<span class="add-on">px</span>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Outline</label>
+						<div class="controls">
+							<div class="input-prepend input-append">
+								<div class="add-on slider addon-slider" id="outline-size-slider"></div>
+								<input data-slider="#outline-size-slider" data-max="6" data-min="0" data-step="1" value="1" class="span1" id="outline-size">
+								<span class="add-on">px</span>
+							</div>
 						</div>
 					</div>
 					<div class="control-group">
@@ -128,12 +140,12 @@
 		</span>
 	</div>
 </div>
+
 <script type='text/javascript' src='js/jquery.js'></script>
 <script type='text/javascript' src='js/cookie.js'></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/minicolors.js"></script>
 <script type="text/javascript" src="js/notifier.js"></script>
-<script type="text/javascript" src="js/jquery.ui.js"></script>
 <script type='text/javascript' src="js/app.js"></script>
 <script type="text/javascript">
 

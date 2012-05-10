@@ -14,8 +14,8 @@ var meme_image_list = $('#meme-images > li'),
 	generate = $('#generate'),
 	userlink = $('#img-link'),
 	spinner = $('#spinner'),
-	font_slider = $("#slider-font-size"),
 	font_size = $("#font-size"),
+	outline_size = $("#outline-size"),
 	api_key_btn = $('#api-key'),
 	api_key_input = $('#api-key-input'),
 	ctx = canvas.getContext('2d'),
@@ -31,17 +31,22 @@ function draw() {
 		canvas.height = img.height;
 		canvas.width = img.width;
 		ctx.save();
+		ctx.clearRect(0, 0, img.height, img.width);
+		ctx.drawImage(img, 0, 0, img.width, img.height);
+
 		ctx.font = "bold " + font_size.val() + "px " + active_font;
 		ctx.textAlign = "center";
 		ctx.fillStyle = color1.val();
-		ctx.strokeStyle = color2.val();
-		ctx.lineWidth = Math.floor(font_size.val()/20);
-		ctx.clearRect(0, 0, img.height, img.width);
-		ctx.drawImage(img, 0, 0, img.width, img.height);
+
 		ctx.fillText(top_input.val(), img.width / 2, parseFloat(font_size.val()), img.width);
-		ctx.strokeText(top_input.val(), img.width / 2, parseFloat(font_size.val()), img.width);
 		ctx.fillText(bottom_input.val(), img.width / 2, img.height - 10, img.width);
-		ctx.strokeText(bottom_input.val(), img.width / 2, img.height - 10, img.width);
+
+		if( outline_size.val() > 0 ) {
+			ctx.strokeStyle = color2.val();
+			ctx.lineWidth = outline_size.val();
+			ctx.strokeText(top_input.val(), img.width / 2, parseFloat(font_size.val()), img.width);
+			ctx.strokeText(bottom_input.val(), img.width / 2, img.height - 10, img.width);
+		}
 
 		ctx.restore();
 	};
@@ -151,20 +156,8 @@ function init() {
 		}
 	});
 
-	/* font slider init and control */
-	font_slider.slider({
-		range: "max",
-		min: 16,
-		max: 60,
-		value: 20,
-		slide: function(event, ui) {
-			font_size.val(ui.value);
-		},
-		change: function(event, ui) {
-			draw();
-		}
-	});
-	font_size.val(font_slider.slider("value"));
+	font_size.on('slide', draw);
+	outline_size.on('slide', draw);
 
 	/* preview font faces */
 	font_list.each(function() {
